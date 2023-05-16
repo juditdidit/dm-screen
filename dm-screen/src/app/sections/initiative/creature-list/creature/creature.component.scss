@@ -48,23 +48,20 @@ $edit-transition-duration: 0.3s;
     color: $danger;
 }
 
-icon-skull,
-icon-potion,
-icon-edit,
-icon-trash {
+.icon {
     width: $font-size-base;
     height: $font-size-base;
 }
 
-icon-skull {
+.icon-skull {
     fill: $danger;
 }
 
-icon-potion {
+.icon-potion {
     fill: $success;
 }
 
-icon-edit,
-icon-trash {
+.icon-edit,
+.icon-trash {
     fill: $link-color;
 }

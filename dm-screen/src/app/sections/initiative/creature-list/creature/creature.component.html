@@ -3,7 +3,7 @@
 
     <div class="creature d-flex align-items-center"
         [ngClass]="{'dead ps-4': creature.dead}">
-        <div class="pe-3 font-weight-bold {{creature.type}}">
+        <div class="pe-3 fw-bold {{creature.type}}">
             {{creature.name}}
         </div>
         <div class="text-muted small">
@@ -15,25 +15,25 @@
         <button type="button"
             class="btn btn-link"
             (click)="toggleDeadStatus()">
-            <dnd-icon-skull *ngIf="!creature.dead"></dnd-icon-skull>
-            <dnd-icon-potion *ngIf="creature.dead"></dnd-icon-potion>
+            <dnd-icon-skull class="icon icon-skull" *ngIf="!creature.dead"></dnd-icon-skull>
+            <dnd-icon-potion class="icon icon-potion" *ngIf="creature.dead"></dnd-icon-potion>
         </button>
         <button type="button"
             class="btn btn-link"
             (click)="editCreature()">
-            <dnd-icon-edit></dnd-icon-edit>
+            <dnd-icon-edit class="icon icon-edit"></dnd-icon-edit>
         </button>
         <button type="button"
             class="btn btn-link"
             (click)="removeCreature()">
-            <dnd-icon-trash></dnd-icon-trash>
+            <dnd-icon-trash class="icon icon-trash"></dnd-icon-trash>
         </button>
     </div>
 </div>
 
 <div *ngIf="editingCreature"
     class="edit-creature d-flex align-items-center">
-    <div class="row no-gutters flex-grow-1">
+    <div class="row g-0 flex-grow-1">
         <div class="col-5 pe-3">
             <input type="text"
                 class="form-control"

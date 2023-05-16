@@ -6,7 +6,7 @@ import { MonstersService } from 'src/app/services/monsters.service';
     templateUrl: './add-monster.component.html'
 })
 export class AddMonsterComponent {
-    // Form data
+    // Initial form data
     monsterName = '';
     monsterHealth: number | null = null;
 

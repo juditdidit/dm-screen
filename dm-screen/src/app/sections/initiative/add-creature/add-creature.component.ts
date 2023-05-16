@@ -6,7 +6,7 @@ import { CREATURE_TYPE, InitiativeService } from 'src/app/services/initiative.se
     templateUrl: './add-creature.component.html'
 })
 export class AddCreatureComponent {
-    // Form data
+    // Initial form data
     creatureName = '';
     creatureRoll: number | null = null;
     creatureType: CREATURE_TYPE = 'neutral';

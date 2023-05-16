@@ -1,5 +1,5 @@
 <div class="py-3">
-    <div class="monster font-weight-bold mb-2"
+    <div class="monster fw-bold mb-2"
         [ngClass]="{'dead': monster.currentHP == 0}">
         {{monster.name}}
     </div>
@@ -35,7 +35,7 @@
                 </button>
             </div>
 
-            <div class="health-count text-right small px-1">
+            <div class="health-count text-end small px-1">
                 <small class="text-muted">
                     {{monster.currentHP}} / {{monster.maxHP}}
                 </small>
