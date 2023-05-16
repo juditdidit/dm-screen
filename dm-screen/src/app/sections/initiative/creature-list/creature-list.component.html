@@ -7,8 +7,8 @@
             [creature]="creature"
             (updateCreatureEvent)="initiativeService.updateCreature(i, $event)"
             (removeCreatureEvent)="initiativeService.removeCreature(i)"
-            class="border-bottom"
-            [class.border-bottom-0]="isLast">
+            class="d-block"
+            [class.border-bottom]="!isLast">
         </dnd-creature>
     </div>
 

@@ -1,5 +1,6 @@
 <div *ngIf="!editingCreature"
-    class="display-creature d-flex justify-content-between">
+    class="display-creature d-flex justify-content-between"
+>
 
     <div class="creature d-flex align-items-center"
         [ngClass]="{'dead ps-4': creature.dead}">
@@ -32,7 +33,8 @@
 </div>
 
 <div *ngIf="editingCreature"
-    class="edit-creature d-flex align-items-center">
+    class="edit-creature d-flex align-items-center"
+>
     <div class="row g-0 flex-grow-1">
         <div class="col-5 pe-3">
             <input type="text"

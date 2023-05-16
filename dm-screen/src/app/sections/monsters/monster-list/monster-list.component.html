@@ -6,8 +6,7 @@
             last as isLast"
             [monster]="monster"
             (updateMonsterHealthEvent)="monstersService.updateMonsterHealth(i, $event)"
-            class="border-bottom"
-            [class.border-bottom-0]="isLast">
+            [class.border-bottom]="!isLast">
         </dnd-monster>
     </div>
 

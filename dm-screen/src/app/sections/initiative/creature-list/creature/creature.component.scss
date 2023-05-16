@@ -1,13 +1,8 @@
-@import "styles";
+@import "variables";
 
 // component specific variables
 $death-transition-duration: 0.3s;
 $edit-transition-duration: 0.3s;
-
-// target self
-:host {
-    display: block;
-}
 
 .display-creature,
 .edit-creature {

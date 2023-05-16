@@ -1,17 +1,10 @@
-$secondary: #ced4da; // $border-color
-
 @import "node_modules/bootstrap/scss/mixins/banner";
 @include bsBanner("");
 
 
 // scss-docs-start import-stack
 // Configuration
-@import "node_modules/bootstrap/scss/functions";
-@import "node_modules/bootstrap/scss/variables";
-@import "node_modules/bootstrap/scss/variables-dark";
-@import "node_modules/bootstrap/scss/maps";
-@import "node_modules/bootstrap/scss/mixins";
-@import "node_modules/bootstrap/scss/utilities";
+@import "variables";
 
 // Layout & components
 @import "node_modules/bootstrap/scss/root";
