@@ -15,10 +15,10 @@ export interface Creature {
 })
 export class InitiativeService {
     readonly creaturesArr: Creature[] = [
-        { id: 0, name: 'Ron Weasley', roll: 15, type: 'good', dead: false },
-        { id: 1, name: 'Draco Malfoy', roll: 15, type: 'bad', dead: false },
+        { id: 0, name: 'Ron Weasley', roll: 23, type: 'good', dead: false },
+        { id: 1, name: 'Draco Malfoy', roll: 17, type: 'bad', dead: false },
         { id: 2, name: 'Nearly Headless Nick', roll: 15, type: 'good', dead: true },
-        { id: 3, name: 'Crookshanks', roll: 15, type: 'neutral', dead: false },
+        { id: 3, name: 'Crookshanks', roll: 2, type: 'neutral', dead: false },
     ]
 
     /**
