@@ -1,0 +1,70 @@
+@import "styles";
+
+// component specific variables
+$death-transition-duration: 0.3s;
+$edit-transition-duration: 0.3s;
+
+// target self
+:host {
+    display: block;
+}
+
+.display-creature,
+.edit-creature {
+    // Height of base font line height + top/bottom padding
+    height: $font-size-base * $line-height-base + map-get($spacers, 3) * 2;
+}
+
+// hover effects for edit buttons
+.display-creature {
+    .options {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity $edit-transition-duration;
+    }
+
+    &:hover {
+        .options {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+// animation effect of dying/reviving creature
+.creature {
+    transition: padding $death-transition-duration, opacity $death-transition-duration;
+
+    &.dead {
+        opacity: 0.25;
+    }
+}
+
+.good {
+    color: $success;
+}
+
+.bad {
+    color: $danger;
+}
+
+icon-skull,
+icon-potion,
+icon-edit,
+icon-trash {
+    width: $font-size-base;
+    height: $font-size-base;
+}
+
+icon-skull {
+    fill: $danger;
+}
+
+icon-potion {
+    fill: $success;
+}
+
+icon-edit,
+icon-trash {
+    fill: $link-color;
+}

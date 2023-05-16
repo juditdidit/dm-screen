@@ -1,0 +1,45 @@
+<div class="py-3">
+    <div class="monster font-weight-bold mb-2"
+        [ngClass]="{'dead': monster.currentHP == 0}">
+        {{monster.name}}
+    </div>
+
+    <div class="health-container">
+        <div class="health-bar w-100 bg-light border rounded-pill overflow-hidden">
+            <div class="health-level h-100"
+                [ngClass]="{
+                    'full': monster.currentHP/monster.maxHP >= .5,
+                    'half': monster.currentHP/monster.maxHP < .5 && monster.currentHP/monster.maxHP > .25,
+                    'danger': monster.currentHP/monster.maxHP <= .25
+                }"
+                [style.width]="monster.currentHP / monster.maxHP * 100 + '%'">
+            </div>
+        </div>
+
+        <div class="d-flex align-items-start justify-content-between mt-2">
+            <div class="health-changes input-group input-group-sm">
+                <button type="button" 
+                    class="btn btn-outline-secondary text-danger"
+                    (click)="damageMonster()">
+                    -
+                </button>
+                <input type="number"
+                    min="0"
+                    class="form-control"
+                    placeholder="0"
+                    [(ngModel)]="adjustHealthBy">
+                <button type="button"
+                    class="btn btn-outline-secondary text-success"
+                    (click)="healMonster()">
+                    +
+                </button>
+            </div>
+
+            <div class="health-count text-right small px-1">
+                <small class="text-muted">
+                    {{monster.currentHP}} / {{monster.maxHP}}
+                </small>
+            </div>
+        </div>
+    </div>
+</div>

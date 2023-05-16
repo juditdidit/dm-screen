@@ -1,0 +1,69 @@
+<div *ngIf="!editingCreature"
+    class="display-creature d-flex justify-content-between">
+
+    <div class="creature d-flex align-items-center"
+        [ngClass]="{'dead ps-4': creature.dead}">
+        <div class="pe-3 font-weight-bold {{creature.type}}">
+            {{creature.name}}
+        </div>
+        <div class="text-muted small">
+            ({{creature.roll}})
+        </div>
+    </div>
+
+    <div class="options d-flex align-items-center">
+        <button type="button"
+            class="btn btn-link"
+            (click)="toggleDeadStatus()">
+            <dnd-icon-skull *ngIf="!creature.dead"></dnd-icon-skull>
+            <dnd-icon-potion *ngIf="creature.dead"></dnd-icon-potion>
+        </button>
+        <button type="button"
+            class="btn btn-link"
+            (click)="editCreature()">
+            <dnd-icon-edit></dnd-icon-edit>
+        </button>
+        <button type="button"
+            class="btn btn-link"
+            (click)="removeCreature()">
+            <dnd-icon-trash></dnd-icon-trash>
+        </button>
+    </div>
+</div>
+
+<div *ngIf="editingCreature"
+    class="edit-creature d-flex align-items-center">
+    <div class="row no-gutters flex-grow-1">
+        <div class="col-5 pe-3">
+            <input type="text"
+                class="form-control"
+                [(ngModel)]="updatedCreatureName">
+        </div>
+
+        <div class="col-3 pe-3">
+            <input type="number"
+                class="form-control"
+                [(ngModel)]="updatedCreatureRoll">
+        </div>
+
+        <div class="col-4 pe-3">
+            <select class="form-select" [(ngModel)]="updatedCreatureType">
+                <option value="good">Good</option>
+                <option value="bad">Bad</option>
+                <option value="neutral">Neutral</option>
+            </select>
+        </div>
+    </div>
+
+    <button type="button"
+        class="btn btn-sm btn-link"
+        (click)="updateCreature()">
+        Update
+    </button>
+
+    <button type="button"
+        class="btn btn-sm btn-link text-muted"
+        (click)="stopEdit()">
+        Cancel
+    </button>
+</div>

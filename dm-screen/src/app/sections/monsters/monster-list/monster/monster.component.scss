@@ -1,0 +1,52 @@
+@import "styles";
+
+// component specific variables
+$health-transition-duration: 0.5s;
+$death-transition-duration: 0.3s;
+
+// target self
+:host {
+    display: block;
+}
+
+// animation effect of dying/reviving monster
+.monster {
+    transition: opacity $death-transition-duration;
+
+    &.dead {
+        opacity: 0.25;
+    }
+}
+
+.health-bar {
+    height: $spacer;
+
+    .health-level {
+        transition: width $health-transition-duration, background-color $health-transition-duration;
+
+        &.full {
+            background-color: $success;
+        }
+
+        &.half {
+            background-color: $warning;
+        }
+
+        &.danger {
+            background-color: $danger;
+        }
+    }
+}
+
+.health-changes {
+    width: auto;
+
+    input {
+        width: $spacer * 4;
+        flex-grow: 0;
+    }
+}
+
+.health-count {
+    line-height: 1;
+}

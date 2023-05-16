@@ -1,0 +1,30 @@
+<div *ngIf="monstersService.monstersArr.length > 0">
+    <div class="border rounded-3 px-3 mt-4">
+        <dnd-monster *ngFor="let monster of monstersService.monstersArr;
+            trackBy: getMonsterID;
+            index as i;
+            last as isLast"
+            [monster]="monster"
+            (updateMonsterHealthEvent)="monstersService.updateMonsterHealth(i, $event)"
+            class="border-bottom"
+            [class.border-bottom-0]="isLast">
+        </dnd-monster>
+    </div>
+
+    <div class="text-right mt-2">
+        <button type="button" 
+            class="btn btn-sm btn-link text-danger p-1"
+            (click)="monstersService.removeAllMonsters()">
+            Clear monsters
+        </button>
+    </div>
+</div>
+
+<div *ngIf="!monstersService.monstersArr.length"
+    class="border bg-light rounded-3 px-3 mt-4">
+    <div class="text-center py-3">
+        <small class="text-muted">
+            No Monsters have been added yet.
+        </small>
+    </div>
+</div>
