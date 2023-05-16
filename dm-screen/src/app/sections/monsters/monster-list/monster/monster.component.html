@@ -5,14 +5,17 @@
     </div>
 
     <div class="health-container">
-        <div class="health-bar w-100 bg-light border rounded-pill overflow-hidden">
-            <div class="health-level h-100"
-                [ngClass]="{
-                    'full': monster.currentHP/monster.maxHP >= .5,
-                    'half': monster.currentHP/monster.maxHP < .5 && monster.currentHP/monster.maxHP > .25,
-                    'danger': monster.currentHP/monster.maxHP <= .25
-                }"
-                [style.width]="monster.currentHP / monster.maxHP * 100 + '%'">
+        <div class="health-bar w-100 position-relative">
+            <div class="bg-light border rounded-pill h-100"></div>
+            <div class="position-absolute top-0 start-0 h-100 w-100 rounded-pill overflow-hidden">
+                <div class="health-level h-100"
+                    [ngClass]="{
+                        'full': monster.currentHP/monster.maxHP >= .5,
+                        'half': monster.currentHP/monster.maxHP < .5 && monster.currentHP/monster.maxHP > .25,
+                        'danger': monster.currentHP/monster.maxHP <= .25
+                    }"
+                    [style.width]="monster.currentHP / monster.maxHP * 100 + '%'">
+                </div>
             </div>
         </div>
 
