@@ -6,4 +6,8 @@ During the pandemic I picked up D&D as a hobby. As an engineer, I thought "how c
 ---
 
 ## How to run
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Install angular `npm install -g @angular/cli`
+2. Set up a new project `ng new my-app`
+3. Navigate to the project `cd my-app`
+4. Spin up a local server `ng serve`
+5. Navigate to `http://localhost:4200`
