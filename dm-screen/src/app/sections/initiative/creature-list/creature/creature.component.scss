@@ -31,7 +31,11 @@ $edit-transition-duration: 0.3s;
     transition: padding $death-transition-duration, opacity $death-transition-duration;
 
     &.dead {
-        opacity: 0.25;
+        opacity: 0.3;
+        
+        .creature-name {
+            text-decoration: line-through;
+        }
     }
 }
 
