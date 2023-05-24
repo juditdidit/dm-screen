@@ -1,0 +1,13 @@
+@import "variables";
+
+main {
+    .row {
+        flex-direction: column;
+    }
+
+    @media (orientation: landscape) {
+        .row {
+            flex-direction: row;
+        }
+    }
+}
