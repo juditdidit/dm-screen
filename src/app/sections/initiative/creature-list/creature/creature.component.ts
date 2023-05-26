@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CREATURE_TYPE, Creature, InitiativeService } from 'src/app/services/initiative.service';
 
 @Component({
@@ -8,12 +8,11 @@ import { CREATURE_TYPE, Creature, InitiativeService } from 'src/app/services/ini
 })
 export class CreatureComponent {
     @Input() creature!: Creature;
-    @Output() updateCreatureEvent = new EventEmitter<Creature>();
 
     // Indicates whether the creature is in editing mode
     editingCreature = false;
 
-    // Default used when updating a creature's info
+    // Defaults used when updating a creature's info
     creatureName = 'Nameless';
     creatureRoll = 0;
     creatureType: CREATURE_TYPE = 'neutral';
@@ -21,7 +20,7 @@ export class CreatureComponent {
     constructor(private initiativeService: InitiativeService) {}
 
     /**
-     * Remove the current creature.
+     * Remove the creature.
      */
     removeCreature(): void {
         this.initiativeService.removeCreature(this.creature.id);
@@ -63,7 +62,7 @@ export class CreatureComponent {
     }
 
     /**
-     * Toggle creature's dead status.
+     * Toggle the creature's dead status.
      */
     toggleDeadStatus(): void {
         this.initiativeService.updateCreature(

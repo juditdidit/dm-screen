@@ -19,16 +19,26 @@ export class MonsterComponent {
 
     constructor(private monstersService: MonstersService) {}
 
-    /**
-     * Add damage to a monster's health.
-     */
-    damageMonster(): void {
-        this.currentHP = this.monster.currentHP - (this.adjustHealthBy || 0);
-
-        // Ensure HP doesn't fall below 0
+    /** Ensure current HP doesn't fall below 0 */
+    checkMinHP(): void {
         if (this.currentHP < 0) {
             this.currentHP = 0;
         }
+    }
+
+    /** Ensure current HP doesn't go above max HP */
+    checkMaxHP(): void {
+        if (this.currentHP > this.maxHP) {
+            this.currentHP = this.maxHP;
+        }
+    }
+
+    /**
+     * Add damage to the monster's health.
+     */
+    damageMonster(): void {
+        this.currentHP = this.monster.currentHP - (this.adjustHealthBy || 0);
+        this.checkMinHP();
 
         this.monstersService.updateMonster(
             this.monster.id,
@@ -43,16 +53,12 @@ export class MonsterComponent {
     }
 
     /**
-     * Heal a monster's health.
+     * Heal the monster's health.
      */
     healMonster(): void {
         this.currentHP = this.monster.currentHP + (this.adjustHealthBy || 0);
-
-        // Ensure HP does not go above max HP
         this.maxHP = this.monster.maxHP;
-        if (this.currentHP > this.maxHP) {
-            this.currentHP = this.maxHP;
-        }
+        this.checkMaxHP();
 
         this.monstersService.updateMonster(
             this.monster.id,
@@ -87,7 +93,9 @@ export class MonsterComponent {
     }
 
     updateMonster(): void {
-        // TODO: add min/max cap to HP
+        this.checkMinHP();
+        this.checkMaxHP();
+
         this.monstersService.updateMonster(
             this.monster.id,
             {
