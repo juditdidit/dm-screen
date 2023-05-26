@@ -10,24 +10,11 @@ $edit-transition-duration: 0.3s;
     height: $font-size-base * $line-height-base + map-get($spacers, 3) * 2;
 }
 
-// hover effects for edit buttons
-.display-creature {
-    .options {
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity $edit-transition-duration;
-    }
-
-    &:hover {
-        .options {
-            opacity: 1;
-            visibility: visible;
-        }
-    }
-}
-
 // animation effect of dying/reviving creature
 .creature {
+    border: none;
+    padding: 0;
+    background-color: transparent;
     transition: padding $death-transition-duration, opacity $death-transition-duration;
 
     &.dead {
@@ -48,19 +35,19 @@ $edit-transition-duration: 0.3s;
 }
 
 .icon {
+    fill: $link-color;
     width: $font-size-base;
     height: $font-size-base;
 }
 
-.icon-skull {
-    fill: $danger;
-}
-
-.icon-potion {
+.icon-good {
     fill: $success;
 }
 
-.icon-edit,
-.icon-trash {
-    fill: $link-color;
+.icon-bad {
+    fill: $danger;
+}
+
+.icon-muted {
+    fill: $text-muted;
 }
