@@ -5,7 +5,6 @@
             index as i;
             last as isLast"
             [monster]="monster"
-            (updateMonsterHealthEvent)="monstersService.updateMonsterHealth(i, $event)"
             [class.border-bottom]="!isLast">
         </dnd-monster>
     </div>
@@ -13,7 +12,7 @@
     <div class="text-end mt-2">
         <button type="button" 
             class="btn btn-sm btn-link text-danger p-1"
-            (click)="monstersService.removeAllMonsters()">
+            (click)="removeAllMonsters()">
             Clear monsters
         </button>
     </div>

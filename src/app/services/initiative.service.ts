@@ -60,7 +60,6 @@ export class InitiativeService {
 
     /**
      * Updates a creature at the specified index in the initiative list.
-     *
      * Only the properties being modified need to be specified.
      */
     updateCreature(index: number, updatedCreature: Partial<Creature>): void {

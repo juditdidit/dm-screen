@@ -5,8 +5,6 @@
             index as i;
             last as isLast"
             [creature]="creature"
-            (updateCreatureEvent)="initiativeService.updateCreature(i, $event)"
-            (removeCreatureEvent)="initiativeService.removeCreature(i)"
             class="d-block"
             [class.border-bottom]="!isLast">
         </dnd-creature>

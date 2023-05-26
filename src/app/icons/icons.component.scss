@@ -1,3 +1,20 @@
+@import 'variables';
+
 :host {
     display: flex;
+    fill: $link-color;
+    width: $font-size-base;
+    height: $font-size-base;
+
+    &.icon-good {
+        fill: $success;
+    }
+
+    &.icon-bad {
+        fill: $danger;
+    }
+
+    &.icon-muted {
+        fill: $text-muted;
+    }
 }
