@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CREATURE_TYPE, Creature } from 'src/app/services/initiative.service';
+import { CREATURE_TYPE, Creature, InitiativeService } from 'src/app/services/initiative.service';
 
 @Component({
     selector: 'dnd-creature',
@@ -9,21 +9,22 @@ import { CREATURE_TYPE, Creature } from 'src/app/services/initiative.service';
 export class CreatureComponent {
     @Input() creature!: Creature;
     @Output() updateCreatureEvent = new EventEmitter<Creature>();
-    @Output() removeCreatureEvent = new EventEmitter<null>();
 
-    // Indicates whether the creature is in editing mode.
+    // Indicates whether the creature is in editing mode
     editingCreature = false;
 
-    // Default form data to be used when updating a creature.
-    updatedCreatureName = 'Nameless';
-    updatedCreatureRoll = 0;
-    updatedCreatureType: CREATURE_TYPE = 'neutral';
+    // Default used when updating a creature's info
+    creatureName = 'Nameless';
+    creatureRoll = 0;
+    creatureType: CREATURE_TYPE = 'neutral';
+
+    constructor(private initiativeService: InitiativeService) {}
 
     /**
-     * Remove the current creature
+     * Remove the current creature.
      */
     removeCreature(): void {
-        this.removeCreatureEvent.emit();
+        this.initiativeService.removeCreature(this.creature.id);
     }
 
     /**
@@ -33,13 +34,13 @@ export class CreatureComponent {
         this.editingCreature = true;
 
         // Get current creature's data
-        this.updatedCreatureName = this.creature.name;
-        this.updatedCreatureRoll = this.creature.roll;
-        this.updatedCreatureType = this.creature.type;
+        this.creatureName = this.creature.name;
+        this.creatureRoll = this.creature.roll;
+        this.creatureType = this.creature.type;
     }
 
     /**
-     * Turn off eidting mode.
+     * Turn off editing mode.
      */
     stopEdit(): void {
         this.editingCreature = false;
@@ -49,12 +50,15 @@ export class CreatureComponent {
      * Update creature data.
      */
     updateCreature(): void {
-        this.updateCreatureEvent.emit({
-            ...this.creature,
-            name: this.updatedCreatureName,
-            roll: this.updatedCreatureRoll,
-            type: this.updatedCreatureType,
-        })
+        this.initiativeService.updateCreature(
+            this.creature.id,
+            {
+                ...this.creature,
+                name: this.creatureName,
+                roll: this.creatureRoll,
+                type: this.creatureType,
+            },
+        );
         this.stopEdit();
     }
 
@@ -62,8 +66,12 @@ export class CreatureComponent {
      * Toggle creature's dead status.
      */
     toggleDeadStatus(): void {
-        this.updateCreatureEvent.emit({
-            ...this.creature, dead: !this.creature.dead
-        });
+        this.initiativeService.updateCreature(
+            this.creature.id,
+            {
+                ...this.creature,
+                dead: !this.creature.dead,
+            },
+        );
     }
 }

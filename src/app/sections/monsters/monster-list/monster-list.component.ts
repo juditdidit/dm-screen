@@ -13,6 +13,11 @@ export class MonsterListComponent {
      */
     getMonsterID(index: number, monster: Monster) {
         // TODO: index or id or both?
+        console.log(index, monster, monster.id);
         return monster.id;
+    }
+
+    removeAllMonsters(): void {
+        this.monstersService.removeAllMonsters();
     }
 }

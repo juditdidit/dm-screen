@@ -32,15 +32,24 @@ export class MonstersService {
         this.monstersArr.push(newMonster);
     }
 
-    /** Empties the monster list. */
+    /**
+     * Remove a monster at the specified index.
+     */
+    removeMonster(index: number): void {
+        this.monstersArr.splice(index, 1);
+    }
+
+    /**
+     * Empties the monster list.
+     */
     removeAllMonsters(): void {
         this.monstersArr.splice(0);
     }
 
     /**
-     * Adjust a monster's healthy based on healing or damage taken.
+     * Updates a monster's data
      */
-    updateMonsterHealth(index: number, updatedMonster: Partial<Monster>): void {
+    updateMonster(index: number, updatedMonster: Partial<Monster>): void {
         this.monstersArr[index] = { ...this.monstersArr[index], ...updatedMonster };
     }
 }

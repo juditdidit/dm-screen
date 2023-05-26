@@ -1,13 +1,8 @@
 @import "variables";
 
-// component specific variables
-$death-transition-duration: 0.3s;
-$edit-transition-duration: 0.3s;
-
-.display-creature,
-.edit-creature {
-    // Height of base font line height + top/bottom padding
-    height: $font-size-base * $line-height-base + map-get($spacers, 3) * 2;
+.display-creature .creature,
+.edit-creature .row {
+    height: $input-height;
 }
 
 // animation effect of dying/reviving creature
@@ -19,10 +14,6 @@ $edit-transition-duration: 0.3s;
 
     &.dead {
         opacity: 0.3;
-        
-        .creature-name {
-            text-decoration: line-through;
-        }
     }
 }
 
@@ -32,22 +23,4 @@ $edit-transition-duration: 0.3s;
 
 .bad {
     color: $danger;
-}
-
-.icon {
-    fill: $link-color;
-    width: $font-size-base;
-    height: $font-size-base;
-}
-
-.icon-good {
-    fill: $success;
-}
-
-.icon-bad {
-    fill: $danger;
-}
-
-.icon-muted {
-    fill: $text-muted;
 }
