@@ -16,6 +16,6 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.align = localStorage.getItem('align') as ALIGN;
+        this.align = localStorage.getItem('align') as ALIGN || this.align;
     }
 }
