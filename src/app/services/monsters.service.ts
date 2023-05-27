@@ -44,6 +44,7 @@ export class MonstersService {
      * Remove a monster at the specified index.
      */
     removeMonster(monsterId: number): void {
+        // Monster Id might not always match up with its index. Let's find correct index by id
         const monsterIndex = this.monstersList.findIndex(monster => monster.id === monsterId);
         this.monstersList.splice(monsterIndex, 1);
         localStorage.setItem('monstersList', JSON.stringify(this.monstersList));
@@ -59,9 +60,10 @@ export class MonstersService {
     }
 
     /**
-     * Updates a monster's data
+     * Updates a monster's data.
      */
     updateMonster(monsterId: number, updatedInfo: Partial<Monster>): void {
+        // Monster Id might not always match up with its index. Let's find correct index by id
         const monsterIndex = this.monstersList.findIndex(monster => monster.id === monsterId);
         this.monstersList[monsterIndex] = { ...this.monstersList[monsterIndex], ...updatedInfo };
         localStorage.setItem('monstersList', JSON.stringify(this.monstersList));
