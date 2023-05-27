@@ -65,9 +65,9 @@
             <div class="health-changes input-group input-group-sm">
                 <button
                     type="button" 
-                    class="btn btn-outline-secondary text-danger"
+                    class="btn btn-outline-secondary"
                     (click)="damageMonster()">
-                    -
+                    <dnd-icon-skull class="icon-bad"></dnd-icon-skull>
                 </button>
                 <input
                     type="number"
@@ -77,9 +77,9 @@
                     [(ngModel)]="adjustHealthBy">
                 <button
                     type="button"
-                    class="btn btn-outline-secondary text-success"
+                    class="btn btn-outline-secondary"
                     (click)="healMonster()">
-                    +
+                    <dnd-icon-potion class="icon-good"></dnd-icon-potion>
                 </button>
             </div>
 
