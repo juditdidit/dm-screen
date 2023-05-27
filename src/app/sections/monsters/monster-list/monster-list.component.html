@@ -1,11 +1,10 @@
-<div *ngIf="monstersService.monstersArr.length > 0">
+<div *ngIf="monsters.length > 0">
     <div class="border rounded-3 px-3 mt-4">
-        <dnd-monster *ngFor="let monster of monstersService.monstersArr;
+        <dnd-monster *ngFor="let monster of monsters;
             trackBy: getMonsterID;
             index as i;
             last as isLast"
             [monster]="monster"
-            (updateMonsterHealthEvent)="monstersService.updateMonsterHealth(i, $event)"
             [class.border-bottom]="!isLast">
         </dnd-monster>
     </div>
@@ -13,13 +12,13 @@
     <div class="text-end mt-2">
         <button type="button" 
             class="btn btn-sm btn-link text-danger p-1"
-            (click)="monstersService.removeAllMonsters()">
+            (click)="removeAllMonsters()">
             Clear monsters
         </button>
     </div>
 </div>
 
-<div *ngIf="!monstersService.monstersArr.length"
+<div *ngIf="!monsters.length"
     class="border bg-light rounded-3 px-3 mt-4">
     <div class="text-center py-3">
         <small class="text-muted">

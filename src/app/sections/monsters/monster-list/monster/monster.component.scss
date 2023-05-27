@@ -1,17 +1,17 @@
 @import "variables";
 
-// component specific variables
-$health-transition-duration: 0.5s;
-$death-transition-duration: 0.3s;
-
-// target self
 :host {
     display: block;
 }
 
-// animation effect of dying/reviving monster
+.display-monster,
+.edit-monster {
+    height: $input-height;
+}
+
+// Animation effect of dying/reviving monster
 .monster {
-    transition: opacity $death-transition-duration;
+    transition: padding $death-transition-duration, opacity $death-transition-duration;
 
     &.dead {
         opacity: 0.25;
@@ -38,7 +38,8 @@ $death-transition-duration: 0.3s;
     }
 }
 
-.health-changes {
+.health-changes,
+.health-count-edit {
     width: auto;
 
     input {

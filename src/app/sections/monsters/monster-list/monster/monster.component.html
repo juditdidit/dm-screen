@@ -1,10 +1,52 @@
-<div class="py-3">
-    <div class="monster fw-bold mb-2"
-        [ngClass]="{'dead': monster.currentHP == 0}">
-        {{monster.name}}
+<div class="pt-2 pb-3">
+    <div *ngIf="!editingMonster" class="display-monster d-flex justify-content-between align-items-center">
+        <div class="monster d-flex align-items-center" [ngClass]="{'dead ps-2': monster.currentHP === 0}">
+            <dnd-icon-skull class="icon-muted me-3" *ngIf="monster.currentHP === 0"></dnd-icon-skull>
+            <div class="fw-bold">
+                {{monster.name}}
+            </div>
+        </div>
+
+        <button
+            type="button"
+            class="btn btn-link p-2"
+            (click)="editMonster()"
+        >
+            <dnd-icon-edit></dnd-icon-edit>
+        </button>
     </div>
 
-    <div class="health-container">
+    <div *ngIf="editingMonster" class="edit-monster d-flex align-items-center">
+        <button
+            type="button"
+            class="btn btn-link p-2 me-2"
+            (click)="removeMonster()"
+        >
+            <dnd-icon-trash class="icon-bad"></dnd-icon-trash>
+        </button>
+
+        <div class="flex-grow-1 pe-3">
+            <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="monsterName"
+            />
+        </div>
+
+        <button type="button" class="btn btn-link p-2" (click)="stopEdit()">
+            <dnd-icon-x class="icon-bad"></dnd-icon-x>
+        </button>
+
+        <button
+            type="button"
+            class="btn btn-link p-2"
+            (click)="updateMonster()"
+        >
+            <dnd-icon-check class="icon-good"></dnd-icon-check>
+        </button>
+    </div>
+
+    <div class="health-container mt-2">
         <div class="health-bar w-100 position-relative">
             <div class="bg-light border rounded-pill h-100"></div>
             <div class="position-absolute top-0 start-0 h-100 w-100 rounded-pill overflow-hidden">
@@ -21,27 +63,46 @@
 
         <div class="d-flex align-items-start justify-content-between mt-2">
             <div class="health-changes input-group input-group-sm">
-                <button type="button" 
-                    class="btn btn-outline-secondary text-danger"
+                <button
+                    type="button" 
+                    class="btn btn-outline-secondary"
                     (click)="damageMonster()">
-                    -
+                    <dnd-icon-skull class="icon-bad"></dnd-icon-skull>
                 </button>
-                <input type="number"
+                <input
+                    type="number"
                     min="0"
                     class="form-control"
                     placeholder="0"
                     [(ngModel)]="adjustHealthBy">
-                <button type="button"
-                    class="btn btn-outline-secondary text-success"
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary"
                     (click)="healMonster()">
-                    +
+                    <dnd-icon-potion class="icon-good"></dnd-icon-potion>
                 </button>
             </div>
 
-            <div class="health-count text-end small px-1">
+            <div *ngIf="!editingMonster" class="health-count text-end small px-1">
                 <small class="text-muted">
                     {{monster.currentHP}} / {{monster.maxHP}}
                 </small>
+            </div>
+
+            <div *ngIf="editingMonster" class="health-count-edit input-group input-group-sm">
+                <input
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    [(ngModel)]="currentHP"
+                >
+                <span class="input-group-text text-muted"><small>/</small></span>
+                <input
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    [(ngModel)]="maxHP"
+                >
             </div>
         </div>
     </div>

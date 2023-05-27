@@ -1,6 +1,28 @@
-<main class="py-5" role="main">
+<main class="pt-4 pb-5 position-relative" role="main">
+    <div
+        class="position-absolute top-0 end-0 btn-group btn-group-sm d-none d-md-flex justify-content-end pt-4 pe-4"
+        role="group"
+    >
+        <button
+            type="button"
+            [class.active]="align === 'horizontal'"
+            class="btn btn-outline-secondary px-0 flex-grow-0"
+            (click)="toggleLayout('horizontal')"
+        >
+            &boxH;
+        </button>
+        <button
+            type="button"
+            [class.active]="align === 'vertical'"
+            class="btn btn-outline-secondary px-0 flex-grow-0"
+            (click)="toggleLayout('vertical')"
+        >
+            ||
+        </button>
+    </div>
+
     <div class="container px-3">
-        <div class="row g-5">
+        <div [ngClass]="align" class="row g-5">
             <dnd-initiative class="d-block col"></dnd-initiative>
             <dnd-monsters class="d-block col"></dnd-monsters>
         </div>
