@@ -11,45 +11,60 @@ export interface Monster {
     providedIn: 'root'
 })
 export class MonstersService {
-    readonly monstersArr: Monster[] = [
-        { id: 0, name: 'Voldemort', currentHP: 399, maxHP: 800 },
-        { id: 1, name: 'Hungarian Horntail', currentHP: 999, maxHP: 999 },
-        { id: 2, name: 'just a troll', currentHP: 5, maxHP: 30 },
-    ];
+    monstersList: Monster[] = [];
+    monsterCounter: number = 0;
 
     /**
-     * Keeps a counter in order to assign a unique ID per monster added.
+     * Keep a counter in order to assign a unique ID per monster added.
      */
-    monsterCounter: number = 2; // Match the last ID in monstersArr
     increaseMonsterCounter(): void {
         this.monsterCounter += 1;
+    }
+
+    /**
+     * Load monsters saved to localStorage.
+     */
+    getMonsters(): void {
+        this.monstersList = JSON.parse(localStorage.getItem('monstersList') || '[]');
+
+        // Find current largest id
+        const newestMonster = this.monstersList.reduce((prev, current) => (prev.id > current.id) ? prev : current, { id: 0 });
+        this.monsterCounter = newestMonster.id;
+        console.log(this.monsterCounter);
     }
 
     /**
      * Add a new monster to the monsters list.
      */
     addMonster(newMonster: Monster): void {
-        this.monstersArr.push(newMonster);
+        this.monstersList.push(newMonster);
+        localStorage.setItem('monstersList', JSON.stringify(this.monstersList));
     }
 
     /**
      * Remove a monster at the specified index.
      */
-    removeMonster(index: number): void {
-        this.monstersArr.splice(index, 1);
+    removeMonster(monsterId: number): void {
+        const monsterIndex = this.monstersList.findIndex(monster => monster.id === monsterId);
+        this.monstersList.splice(monsterIndex, 1);
+        localStorage.setItem('monstersList', JSON.stringify(this.monstersList));
     }
 
     /**
      * Empties the monster list.
      */
     removeAllMonsters(): void {
-        this.monstersArr.splice(0);
+        this.monstersList.splice(0);
+        localStorage.removeItem('monstersList');
+        this.monsterCounter = 0;
     }
 
     /**
      * Updates a monster's data
      */
-    updateMonster(index: number, updatedMonster: Partial<Monster>): void {
-        this.monstersArr[index] = { ...this.monstersArr[index], ...updatedMonster };
+    updateMonster(monsterId: number, updatedInfo: Partial<Monster>): void {
+        const monsterIndex = this.monstersList.findIndex(monster => monster.id === monsterId);
+        this.monstersList[monsterIndex] = { ...this.monstersList[monsterIndex], ...updatedInfo };
+        localStorage.setItem('monstersList', JSON.stringify(this.monstersList));
     }
 }

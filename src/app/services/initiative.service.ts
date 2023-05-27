@@ -38,7 +38,7 @@ export class InitiativeService {
         this.creaturesList = JSON.parse(localStorage.getItem('creaturesList') || '[]');
 
         // Find current largest id
-        const newestCreature = this.creaturesList.reduce((prev, current) => (prev.id > current.id) ? prev : current, { id: 0 })
+        const newestCreature = this.creaturesList.reduce((prev, current) => (prev.id > current.id) ? prev : current, { id: 0 });
         this.creatureCounter = newestCreature.id;
     }
 
