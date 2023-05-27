@@ -30,7 +30,6 @@ export class MonstersService {
         // Find current largest id
         const newestMonster = this.monstersList.reduce((prev, current) => (prev.id > current.id) ? prev : current, { id: 0 });
         this.monsterCounter = newestMonster.id;
-        console.log(this.monsterCounter);
     }
 
     /**
