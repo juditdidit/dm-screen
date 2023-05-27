@@ -1,6 +1,6 @@
-<div *ngIf="initiativeService.creaturesArr.length > 0">
+<div *ngIf="creatures.length > 0">
     <div class="border rounded-3 px-3 mt-4">
-        <dnd-creature *ngFor="let creature of initiativeService.creaturesArr;
+        <dnd-creature *ngFor="let creature of creatures;
             trackBy: getCreatureID;
             index as i;
             last as isLast"
@@ -13,13 +13,13 @@
     <div class="text-end mt-2">
         <button type="button" 
             class="btn btn-sm btn-link text-danger p-1"
-            (click)="initiativeService.removeAllCreatures()">
+            (click)="removeAllCreatures()">
             Clear initiative
         </button>
     </div>
 </div>
 
-<div *ngIf="!initiativeService.creaturesArr.length"
+<div *ngIf="!creatures.length"
     class="border bg-light rounded-3 px-3 mt-4">
     <div class="text-center py-3">
         <small class="text-muted">
