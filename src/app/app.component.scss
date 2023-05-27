@@ -9,12 +9,16 @@
 
 main {
     .row {
-        flex-direction: column;
-    }
+        &.vertical {
+            flex-direction: column;
+        }
 
-    @media (orientation: landscape) {
-        .row {
+        &.horizontal {
             flex-direction: row;
         }
     }
+}
+
+.btn {
+    width: 2rem;
 }
