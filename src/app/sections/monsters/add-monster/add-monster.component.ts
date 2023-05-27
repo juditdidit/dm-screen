@@ -12,7 +12,9 @@ export class AddMonsterComponent {
 
     constructor(private monstersService: MonstersService) {}
 
-    /** Adds the monster data to the monsters list */
+    /**
+     * Adds the monster data to the monsters list
+     */
     addMonster(): void {
         this.monstersService.increaseMonsterCounter();
         this.monstersService.addMonster({

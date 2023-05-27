@@ -3,7 +3,7 @@
         <div class="monster d-flex align-items-center" [ngClass]="{'dead ps-2': monster.currentHP === 0}">
             <dnd-icon-skull class="icon-muted me-3" *ngIf="monster.currentHP === 0"></dnd-icon-skull>
             <div class="fw-bold">
-                {{monster.name}}
+                {{monster.name}} {{monster.id}}
             </div>
         </div>
 
