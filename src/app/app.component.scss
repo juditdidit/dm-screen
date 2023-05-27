@@ -9,12 +9,12 @@
 
 main {
     .row {
-        &.vertical {
-            flex-direction: column;
-        }
+        flex-direction: column;
 
-        &.horizontal {
-            flex-direction: row;
+        @media (min-width: map-get($grid-breakpoints, md)) {
+            &.horizontal {
+                flex-direction: row;
+            }
         }
     }
 }

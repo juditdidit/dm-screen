@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    align: 'vertical' | 'horizontal' = 'vertical';
+    align: 'vertical' | 'horizontal' = 'horizontal';
 
     toggleLayout(layout: 'vertical' | 'horizontal'): void {
         this.align = layout;
