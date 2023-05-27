@@ -10,11 +10,15 @@
 main {
     .row {
         flex-direction: column;
-    }
 
-    @media (orientation: landscape) {
-        .row {
-            flex-direction: row;
+        @media (min-width: map-get($grid-breakpoints, md)) {
+            &.horizontal {
+                flex-direction: row;
+            }
         }
     }
+}
+
+.btn {
+    width: 2rem;
 }
