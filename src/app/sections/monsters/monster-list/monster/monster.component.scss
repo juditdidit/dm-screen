@@ -1,6 +1,5 @@
 @import "variables";
 
-// target self
 :host {
     display: block;
 }
@@ -10,7 +9,7 @@
     height: $input-height;
 }
 
-// animation effect of dying/reviving monster
+// Animation effect of dying/reviving monster
 .monster {
     transition: padding $death-transition-duration, opacity $death-transition-duration;
 

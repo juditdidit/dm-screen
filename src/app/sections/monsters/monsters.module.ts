@@ -10,19 +10,19 @@ import { MonstersComponent } from './monsters.component';
 
 
 @NgModule({
-  declarations: [
-    MonstersComponent,
-    MonsterListComponent,
-    AddMonsterComponent,
-    MonsterComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    IconsModule,
-  ],
-  exports: [
-    MonstersComponent
-  ]
+    declarations: [
+        MonstersComponent,
+        MonsterListComponent,
+        AddMonsterComponent,
+        MonsterComponent
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IconsModule,
+    ],
+    exports: [
+        MonstersComponent
+    ]
 })
 export class MonstersModule { }
