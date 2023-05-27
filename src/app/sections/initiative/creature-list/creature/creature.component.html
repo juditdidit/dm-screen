@@ -1,53 +1,56 @@
-<div *ngIf="!editingCreature"
-    class="display-creature d-flex justify-content-between align-items-center"
+<div
+    *ngIf="!editingCreature"
+    class="display-creature d-flex justify-content-between align-items-center py-2"
 >
-
-    <button class="creature d-flex align-items-center"
-        [ngClass]="{'dead ps-2': creature.dead}"
+    <button
+        class="creature d-flex align-items-center"
+        [ngClass]="{ 'dead ps-2': creature.dead }"
         (click)="toggleDeadStatus()"
     >
-        <dnd-icon-skull class="icon icon-muted me-3" *ngIf="creature.dead"></dnd-icon-skull>
-        <div class="pe-3 creature-name fw-bold {{creature.type}}">
-            {{creature.name}}
+        <dnd-icon-skull class="icon-muted me-3" *ngIf="creature.dead"></dnd-icon-skull>
+        <div class="pe-3 fw-bold {{ creature.type }}">
+            {{ creature.name }}
         </div>
-        <div class="text-muted small">
-            ({{creature.roll}})
-        </div>
+        <div class="text-muted small">({{ creature.roll }})</div>
     </button>
 
-    <div class="edit">
-        <button type="button"
-            class="btn btn-link p-2 border-0"
-            (click)="editCreature()">
-            <dnd-icon-edit class="icon"></dnd-icon-edit>
-        </button>
-    </div>
+    <button
+        type="button"
+        class="btn btn-link p-2"
+        (click)="editCreature()"
+    >
+        <dnd-icon-edit></dnd-icon-edit>
+    </button>
 </div>
 
-<div *ngIf="editingCreature"
-    class="edit-creature d-flex align-items-center"
->
-    <button type="button"
-        class="btn btn-link p-2 border-0 me-2"
-        (click)="removeCreature()">
-        <dnd-icon-trash class="icon icon-bad"></dnd-icon-trash>
+<div *ngIf="editingCreature" class="edit-creature d-flex align-items-center py-2">
+    <button
+        type="button"
+        class="btn btn-link p-2 me-2"
+        (click)="removeCreature()"
+    >
+        <dnd-icon-trash class="icon-bad"></dnd-icon-trash>
     </button>
 
-    <div class="row g-0 flex-grow-1">
+    <div class="row g-0 flex-grow-1 pe-2">
         <div class="col-5 pe-3">
-            <input type="text"
+            <input
+                type="text"
                 class="form-control"
-                [(ngModel)]="updatedCreatureName">
+                [(ngModel)]="creatureName"
+            />
         </div>
 
         <div class="col-3 pe-3">
-            <input type="number"
+            <input
+                type="number"
                 class="form-control"
-                [(ngModel)]="updatedCreatureRoll">
+                [(ngModel)]="creatureRoll"
+            />
         </div>
 
-        <div class="col-4 pe-2">
-            <select class="form-select" [(ngModel)]="updatedCreatureType">
+        <div class="col-4">
+            <select class="form-select" [(ngModel)]="creatureType">
                 <option value="good">Good</option>
                 <option value="bad">Bad</option>
                 <option value="neutral">Neutral</option>
@@ -55,15 +58,15 @@
         </div>
     </div>
 
-    <button type="button"
-        class="btn btn-sm btn-link"
-        (click)="stopEdit()">
-        <dnd-icon-x class="icon icon-bad"></dnd-icon-x>
+    <button type="button" class="btn btn-link p-2" (click)="stopEdit()">
+        <dnd-icon-x class="icon-bad"></dnd-icon-x>
     </button>
 
-    <button type="button"
-        class="btn btn-sm btn-link"
-        (click)="updateCreature()">
-        <dnd-icon-check class="icon icon-good"></dnd-icon-check>
+    <button
+        type="button"
+        class="btn btn-link p-2"
+        (click)="updateCreature()"
+    >
+        <dnd-icon-check class="icon-good"></dnd-icon-check>
     </button>
 </div>

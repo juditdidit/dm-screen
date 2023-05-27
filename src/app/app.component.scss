@@ -1,13 +1,24 @@
 @import "variables";
 
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
 main {
     .row {
         flex-direction: column;
-    }
 
-    @media (orientation: landscape) {
-        .row {
-            flex-direction: row;
+        @media (min-width: map-get($grid-breakpoints, md)) {
+            &.vertical {
+                flex-direction: row;
+            }
         }
     }
+}
+
+.btn {
+    width: 2rem;
 }

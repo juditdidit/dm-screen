@@ -15,6 +15,9 @@ During the pandemic I picked up D&D as a hobby. As an engineer, I thought "how c
 * Edit monster name, current HP, and max HP if needed
 * A calculator is in place to ensure HP never falls under 0, or exceeds the max HP
 
+### Other neat things
+* Initiative and monster info are saved in local storage to retain the content even on page refresh
+
 ---
 
 ![Screenshot](DM-screen-demo.png)

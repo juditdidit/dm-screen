@@ -14,17 +14,12 @@ export interface Creature {
     providedIn: 'root'
 })
 export class InitiativeService {
-    readonly creaturesArr: Creature[] = [
-        { id: 0, name: 'Ron Weasley', roll: 23, type: 'good', dead: false },
-        { id: 1, name: 'Draco Malfoy', roll: 17, type: 'bad', dead: false },
-        { id: 2, name: 'Nearly Headless Nick', roll: 15, type: 'good', dead: true },
-        { id: 3, name: 'Crookshanks', roll: 2, type: 'neutral', dead: false },
-    ]
+    creaturesList: Creature[] = [];
+    creatureCounter: number = 0;
 
     /**
-     * Keeps a counter in order to assign a unique ID per creature added.
+     * Keep a counter in order to assign a unique ID per creature added.
      */
-    creatureCounter: number = 3; // Match the last ID in creaturesArr
     increaseCreatureCounter(): void {
         this.creatureCounter += 1;
     }
@@ -33,38 +28,55 @@ export class InitiativeService {
      * Sorts the creatures according to their initiative rolls.
      */
     private sortCreatures(): void {
-        this.creaturesArr.sort((a, b) => b.roll - a.roll);
+        this.creaturesList.sort((a, b) => b.roll - a.roll);
+    }
+
+    /**
+     * Load creatures saved to localStorage.
+     */
+    getCreatures(): void {
+        this.creaturesList = JSON.parse(localStorage.getItem('creaturesList') || '[]');
+
+        // Find current largest id
+        const newestCreature = this.creaturesList.reduce((prev, current) => (prev.id > current.id) ? prev : current, { id: 0 });
+        this.creatureCounter = newestCreature.id;
     }
 
     /**
      * Adds a creature to the initiative list.
      */
     addCreature(creature: Creature): void {
-        this.creaturesArr.push(creature);
+        this.creaturesList.push(creature);
         this.sortCreatures();
+        localStorage.setItem('creaturesList', JSON.stringify(this.creaturesList));
     }
 
     /**
      * Removes a creature at the specified index from the initiative list.
      */
-    removeCreature(index: number): void {
-        this.creaturesArr.splice(index, 1);
+    removeCreature(creatureId: number): void {
+        const creatureIndex = this.creaturesList.findIndex(creature => creature.id === creatureId);
+        this.creaturesList.splice(creatureIndex, 1);
+        localStorage.setItem('creaturesList', JSON.stringify(this.creaturesList));
     }
 
     /**
      * Empties the initiative list.
      */
     removeAllCreatures(): void {
-        this.creaturesArr.splice(0);
+        this.creaturesList.splice(0);
+        localStorage.removeItem('creaturesList');
+        this.creatureCounter = 0;
     }
 
     /**
      * Updates a creature at the specified index in the initiative list.
-     *
      * Only the properties being modified need to be specified.
      */
-    updateCreature(index: number, updatedCreature: Partial<Creature>): void {
-        this.creaturesArr[index] = { ...this.creaturesArr[index], ...updatedCreature };
+    updateCreature(creatureId: number, updatedInfo: Partial<Creature>): void {
+        const creatureIndex = this.creaturesList.findIndex(creature => creature.id === creatureId);
+        this.creaturesList[creatureIndex] = { ...this.creaturesList[creatureIndex], ...updatedInfo };
         this.sortCreatures();
+        localStorage.setItem('creaturesList', JSON.stringify(this.creaturesList));
     }
 }
